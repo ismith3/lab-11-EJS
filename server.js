@@ -30,28 +30,26 @@ app.post('/results', (request, response) => {
   else {
     console.error('Please select input type and provide a valid search');
   }
-  response.send(fetchBooks(input));
+  fetchBooks(input, response);
 });
 
 
-function fetchBooks (input){
-  let bookArray = [];
-  let url = `https://www.googleapis.com/books/v1/volumes?q=${input}&key=${process.env.GOOGLE_BOOKS_API}`;
+function fetchBooks (input, response){
+  let url = `https://www.googleapis.com/books/v1/volumes?q=${input}`;
+
   superagent.get(url)
     .then(data => {
-      for(let i = 0; i < 10; i++){
-        let book = new Book(data, i);
-        bookArray.push(book);
-      }
+      response.send(data.body.items.map(book => {
+        return new Book(book);
+      }));
     }).catch(error => console.log(error));
-  return bookArray;
 }
 
-function Book (data, i){
-  this.title = data.items[i].volumeInfo.title || 'Not Found';
-  this.authors = data.items[i].volumeInfo.authors || 'Not Found';
-  this.description = data.items[i].volumeInfo.description || 'Not Found';
-  this.image = data.items[i].volumeInfo.imageLinks.thumbnail.replace('http', 'https') || 'Not Found';
+function Book(book){
+  this.title = book.volumeInfo.title || 'Not Found';
+  this.authors = book.volumeInfo.authors || 'Not Found';
+  this.description = book.volumeInfo.description || 'Not Found';
+  this.image = book.volumeInfo.imageLinks.thumbnail.replace('http', 'https') || 'Not Found';
 }
 
 
