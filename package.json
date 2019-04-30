@@ -1,0 +1,26 @@
+{
+  "name": "lab-11-ejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "nodemon": "^1.18.11",
+    "superagent": "^5.0.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ismith3/lab-11-EJS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ismith3/lab-11-EJS/issues"
+  },
+  "homepage": "https://github.com/ismith3/lab-11-EJS#readme"
+}
