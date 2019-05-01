@@ -1,18 +1,25 @@
 
+require('dotenv').config();
 const express = require('express');
 const superagent = require('superagent');
-
+const { Client } = require('pg');
+const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended: true}));
 app.use(express.static('./public'));
+app.use(cors());
+
+const client = new Client(process.env.DATABASE_URL);
+client.connect();
+client.on('err', err => console.log(err));
 
 //listening
 app.listen(PORT, () => console.log(`Never fear... port ${PORT} is here!!`));
 
-/*render index page*/
+/*render search page*/
 app.get('/', (request, response) => {
   response.render('pages/search-new');
 });
