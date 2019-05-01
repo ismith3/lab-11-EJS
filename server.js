@@ -14,7 +14,7 @@ app.listen(PORT, () => console.log(`Never fear... port ${PORT} is here!!`));
 
 /*render index page*/
 app.get('/', (request, response) => {
-  response.render('pages/index');
+  response.render('pages/search-new');
 });
 
 
@@ -30,7 +30,7 @@ app.post('/results', (request, response) => {
     input = 'inauthor:' + request.body.search;
   }
   else {
-    response.render('error');
+    response.render('pages/error');
   }
 
   fetchBooks(input, response);
@@ -46,7 +46,7 @@ function fetchBooks (input, response){
         data: data.body.items.map(book => {
           return new Book(book);
         })});
-    }).catch(error => response.render('error'));
+    }).catch(error => response.render('pages/error'));
 }
 
 function Book(book){

@@ -7,16 +7,29 @@
   <link rel="stylesheet" href="styles/base.css">
   <link rel="stylesheet" href="styles/layout.css">
   <link rel="stylesheet" href="styles/modules.css">
+
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
   <title>Document</title>
 </head>
-<header>
-    <% include ../partials/nav %>
-</header>
 <body>
+  <header>
+    <% include ../partials/nav %>
+    <section>
+      Search By Title or Author
+    </section>
+  </header>
   <main>
-    <h1> DON'T PANIC!</h1>
-    <p>Some sort of something has gone wrong, it will all be okay. Or not then we die.</p>
+    <section class="form-container">
+      <form action="/results" method="POST">
+        <input type="text" name="search">
+        <input type="radio" name="searchOption" id="title" value="title">
+        <label for="title">Title</label>
+        <input type="radio" name="searchOption" id="author" value="author">
+        <label for="author">Author</label>
+        <input type="submit" value="Search Google Books API">
+      </form>
+    </section>
   </main>
 </body>
 </html>
