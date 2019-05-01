@@ -44,8 +44,8 @@ function fetchBooks (input, response){
     .then(data => {
       response.render('pages/results', {
         data: data.body.items.map(book => {
-        return new Book(book);
-      }));
+          return new Book(book);
+        })});
     }).catch(error => response.render('error'));
 }
 
