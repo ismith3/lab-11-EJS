@@ -38,7 +38,8 @@ app.post('/results', (request, response) => {
 
 
 function fetchBooks (input, response){
-  let url = `https://www.googleapis.com/books/v1/volumes?q=${input}`;
+  let url = encodeURI(`https://www.googleapis.com/books/v1/volumes?q=${input}`);
+  console.log(url);
 
   superagent.get(url)
     .then(data => {
@@ -46,12 +47,18 @@ function fetchBooks (input, response){
         data: data.body.items.map(book => {
           return new Book(book);
         })});
-    }).catch(error => response.render('pages/error'));
+    }).catch(error => {
+      console.log(error);
+      response.render('pages/error');
+    });
 }
 
 function Book(book){
-  this.title = book.volumeInfo.title || 'Not Found';
-  this.authors = book.volumeInfo.authors.join() || 'Not Found';
-  this.description = book.volumeInfo.description || 'Not Found';
-  this.image = book.volumeInfo.imageLinks.thumbnail.replace('http', 'https') || 'Not Found';
+  //console.log(book.volumeInfo);
+  this.title = book.volumeInfo.title || 'Title not Found';
+  this.authors = book.volumeInfo.authors || 'Authors not Found';
+  this.description = book.volumeInfo.description || 'Description not Found';
+  this.thumbnail = book.volumeInfo.imageLinks || 'Image not found';
+  //this.image = book.volumeInfo.imageLinks.thumbnail.replace('http', 'https') || 'Not Found';
+  console.log(this.thumbnail);
 }
