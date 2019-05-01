@@ -2,3 +2,24 @@
 
 
 /* results */
+
+/* error */
+
+.error {
+  display: grid;
+  grid-template-columns: 15% auto 15%;
+  grid-template-rows:  10% 50% 20% 20%; 
+  justify-content: center;
+  color: red; 
+}
+
+.a{
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+}
+
+.b{
+  grid-column: 2 / 3;
+  grid-row: 4 / 3;
+  color: white;
+}
