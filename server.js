@@ -14,7 +14,7 @@ app.listen(PORT, () => console.log(`Never fear... port ${PORT} is here!!`));
 
 /*render index page*/
 app.get('/', (request, response) => {
-  response.render('pages/index');
+  response.render('pages/search-new');
 });
 
 
