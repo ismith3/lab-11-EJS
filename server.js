@@ -8,10 +8,10 @@ const PORT = process.env.PORT || 3000;
 
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended: true}));
-
 app.use(express.static('./public'));
 
 
+/*render index page*/
 app.get('/', (requeset, response) => {
   response.render('pages/index');
 });
