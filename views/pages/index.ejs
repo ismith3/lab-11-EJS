@@ -13,12 +13,23 @@
   <title>Document</title>
 </head>
 <body>
-  <h1>Hello World</h1>
+  <header>
+    Best Books!
+    <nav>
+    </nav>
+  </header>
+  <main>
+     <h1>Search By Title or Author</h1>
   <form action="/results" method="POST">
-    <input type="radio" name="searchOption" value="title">
-    <input type="radio" name="searchOption" value="author">
+    <input type="radio" name="searchOption" id="title" value="title">
+    <label for="title">Title</label>
+
+    <input type="radio" name="searchOption" id="author" value="author">
+    <label for="author">Author</label>
+
     <input type="text" name="search">
-    <input type="submit">
+    <input type="submit" value="Search Google Books API">
   </form>
+  </main>
 </body>
 </html>

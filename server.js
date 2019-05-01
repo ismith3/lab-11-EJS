@@ -7,11 +7,13 @@ const PORT = process.env.PORT || 3000;
 
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended: true}));
-
 app.use(express.static('./public'));
 
+//listening
+app.listen(PORT, () => console.log(`Never fear... port ${PORT} is here!!`));
 
-app.get('/', (request, response) => {
+/*render index page*/
+  app.get('/', (request, response) => {
   response.render('pages/index');
 });
 
@@ -28,7 +30,7 @@ app.post('/results', (request, response) => {
     input = 'inauthor:' + request.body.search;
   }
   else {
-    console.error('Please select input type and provide a valid search');
+    response.render('error');
   }
 
   fetchBooks(input, response);
@@ -43,8 +45,8 @@ function fetchBooks (input, response){
       response.render('pages/results', {
         data: data.body.items.map(book => {
         return new Book(book);
-      })});
-    }).catch(error => console.log(error));
+      }));
+    }).catch(error => response.render('error'));
 }
 
 function Book(book){
@@ -53,8 +55,3 @@ function Book(book){
   this.description = book.volumeInfo.description || 'Not Found';
   this.image = book.volumeInfo.imageLinks.thumbnail.replace('http', 'https') || 'Not Found';
 }
-
-
-
-//listening thing
-app.listen(PORT, () => console.log(`Never fear... port ${PORT} is here!!`));
