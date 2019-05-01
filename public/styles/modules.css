@@ -1,12 +1,51 @@
 /* header */
+header {
+  text-align: center;
+  background-color: black;
+}
+header section {
+  width: 100%;
+  clear: both;
+  padding: 12px 0;
+  margin-top: 20px;
+  background-color: #444;
+  color: white;
+}
+nav {
+  width: 100%;
+  /* height: 40px; */
+}
 nav i {
   float: right;
   margin: 0;
+  padding: 15px;
 }
 nav h2 {
   float: left;
   margin: 0;
+  padding: 22px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
 }
-nav {
-  
+
+/* Book */
+
+section.book {
+  display: block;
+  border: 1px solid white;
+  text-align: center;
+  margin: 40px 20px;
+  height: 400px;
+}
+section.book img {
+  width: 150px;
+  margin: 20px 0 5px;
+}
+section.book h2  {
+  margin-top: 5px;
+  font-size: 20px;
+}
+section.book h3 {
+  font-size: 14px;
+  margin-top: 5px;
 }
