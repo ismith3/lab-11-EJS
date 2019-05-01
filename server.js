@@ -5,20 +5,20 @@ const superagent = require('superagent');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended: true}));
 
 app.use(express.static('./public'));
 
 
-app.get('/', (requeset, response) => {
+app.get('/', (request, response) => {
   response.render('pages/index');
 });
 
 
 /* Book fetching*/
 app.post('/results', (request, response) => {
+  
   console.log(request.body);
   let input;
   if(request.body.searchOption === 'title'){
@@ -30,6 +30,7 @@ app.post('/results', (request, response) => {
   else {
     console.error('Please select input type and provide a valid search');
   }
+
   fetchBooks(input, response);
 });
 
@@ -39,9 +40,10 @@ function fetchBooks (input, response){
 
   superagent.get(url)
     .then(data => {
-      response.send(data.body.items.map(book => {
+      response.render('pages/results', {
+        data: data.body.items.map(book => {
         return new Book(book);
-      }));
+      })});
     }).catch(error => console.log(error));
 }
 
