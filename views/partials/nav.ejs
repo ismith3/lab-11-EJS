@@ -1,13 +1,30 @@
 <nav>
   <h2 id="home-button">Best Books!</h2>
   <i class="fas fa-bars fa-2x"></i>
+  <section class="dropdown">
+    <a href="/">Home</a></br>
+    <a href="/views/pages/search-new.ejs">Search the Google Books API</a>
+  </section>
 </nav>
 
 <script>
 let button = document.getElementById('home-button');
+let burger = document.getElementsByClassName('fas fa-bars fa-2x')[0];
+
 button.addEventListener('click', reroute);
+burger.addEventListener('click', dropdown);
 
 function reroute() {
   window.location.href = '/';
 }
+
+function dropdown() {
+  if (document.getElementsByClassName('dropdown')[0].style.display === 'none') {
+    document.getElementsByClassName('dropdown')[0].style.display = 'block';
+  }
+  else {
+    document.getElementsByClassName('dropdown')[0].style.display = 'none';
+  }
+}
+
 </script>
