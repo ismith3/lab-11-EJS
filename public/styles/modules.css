@@ -18,6 +18,9 @@ nav i {
   margin: 0;
   padding: 15px;
 }
+nav i:hover {
+  cursor: pointer;
+}
 nav h2 {
   float: left;
   margin: 0;
@@ -25,7 +28,9 @@ nav h2 {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 18px;
 }
-
+nav h2:hover {
+  cursor: pointer;
+}
 /* Book */
 
 section.book {
@@ -54,4 +59,21 @@ section.book h4 {
 }
 .book p {
   margin: 20px 0;
+}
+
+/* dropdown */
+
+nav section {
+  background-color: rgba(0,0,0,80%);
+  position: absolute;
+  top: 62px;
+  display: none;
+}
+nav section a {
+  position: static;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  display: block;
+  font-family: Arial, Helvetica, sans-serif;
 }
