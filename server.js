@@ -111,7 +111,7 @@ function Book(book){
   this.description = book.volumeInfo.description || 'Description not Found';
   this.thumbnail = book.volumeInfo.imageLinks || 'Image not found';
   //this.image = book.volumeInfo.imageLinks.thumbnail.replace('http', 'https') || 'Not Found';
-  this.isbn = book.volumeInfo.industryIdentifiers[0].identifier;
+  this.isbn = book.volumeInfo.industryIdentifiers ? book.volumeInfo.industryIdentifiers[0].identifier : 'ISBN not found';
   console.log(this.isbn);
 }
 
