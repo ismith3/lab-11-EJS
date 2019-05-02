@@ -43,6 +43,10 @@ app.post('/results', (request, response) => {
   fetchBooks(input, response);
 });
 
+/*Book save */
+app.post('/bookshelf', (request, response) => {
+ console.log(request.body);
+});
 
 function fetchBooks (input, response){
   let url = encodeURI(`https://www.googleapis.com/books/v1/volumes?q=${input}`);
