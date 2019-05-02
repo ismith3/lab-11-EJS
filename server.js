@@ -51,16 +51,16 @@ app.post('/bookshelf', (request, response) => {
 });
 
 /*show bookshelf */
-app.get('/bookshelf', (request, response)) => {
+//app.get('/bookshelf', (request, response)) => {
  //getBookshelf()
-}
+//};
 
 /********* GETTING THE BOOKSHELF DATA NOT DONE ********/
-// function getBookshelf (input, response) {
-//   const SQL = `SELECT * FROM books WHERE bookshelf = $1`;
+function getBookshelf (input, response) {
+  const SQL = `SELECT * FROM books WHERE bookshelf = $1`;
 
-//   client.query()
-// }
+  client.query();
+}
 
 function saveBooks (input, response) {
   const SQL = `INSERT INTO books (title, authors, description, image_url, bookshelf)
