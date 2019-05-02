@@ -35,20 +35,25 @@ section.book {
   border: 1px solid white;
   text-align: center;
   margin: 40px 20px;
-  height: 400px;
 }
 section.book img {
   width: 150px;
   margin: 20px 0 5px;
 }
 section.book h2  {
-  margin-top: 5px;
+  margin: 10px;
   font-size: 20px;
 }
 section.book h3 {
   font-size: 14px;
-  margin-top: 5px;
+  margin: 5px;
 }
 section.book .noImage {
   padding: 40px;
+}
+section.book h4 {
+  margin: 5px;
+}
+.book p {
+  margin: 20px 0;
 }
