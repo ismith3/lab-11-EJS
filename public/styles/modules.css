@@ -1,19 +1,17 @@
 /* header */
 header {
   text-align: center;
-  background-color: black;
+  background-color: transparent;
 }
 header section {
   width: 100%;
   clear: both;
   padding: 12px 0;
-  margin-top: 20px;
   background-color: #444;
   color: white;
 }
 nav {
   width: 100%;
-  /* height: 40px; */
 }
 nav i {
   float: right;
