@@ -26,14 +26,19 @@ app.get('/', (request, response) => {
 
 app.get('/books/:id', (request, response) => {
   console.log(request.params.id);
-  let SQL = 'SELECT * FROM books WHERE id=$1';
+  let SQL = 'SELECT title, authors, isbn, description, image_url, bookshelf FROM books WHERE id=$1';
   let values = [request.params.id];
 
-  console.log(client.query(SQL, values));
+  client.query(SQL, values)
+    .then(res => {
+      response.render('pages/books/show', {
+        book: res.rows[0]
+      });
+    });
 
-  response.render('pages/books/show', {
-    data: client.query(SQL, values)
-  });
+  // response.render('pages/books/detail', {
+  //   book: result.rows[0]
+  // });
 });
 
 /* Book fetching*/
@@ -76,13 +81,6 @@ function getBookshelf (input, response) {
   });
 }
 
-function getDetails(request, response) {
-  console.log(request);
-  response.render('pages/books/detail', {
-    data: request
-  });
-  //response.render('pages/books/show.ejs');
-}
 function saveBooks (input, response) {
   const SQL = `INSERT INTO books (title, authors, isbn, description, image_url, bookshelf)
                   VALUES ($1, $2, $3, $4, $5, $6)`;
