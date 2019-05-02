@@ -72,7 +72,6 @@ function saveBooks (input, response) {
 
 function fetchBooks (input, response){
   let url = encodeURI(`https://www.googleapis.com/books/v1/volumes?q=${input}`);
-  console.log(url);
 
   superagent.get(url)
     .then(data => {
