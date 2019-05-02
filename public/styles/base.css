@@ -6,6 +6,8 @@ body {
 .form-container{
   width: 90%;
   height: 90vh;
+  margin: auto;
+  padding-top: 10%;
 }
 
 input[type=text], select {
