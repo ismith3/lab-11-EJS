@@ -19,10 +19,22 @@
     </section>
     <section>
       <% if(books.length > 0) { %>
-
-        <% } else { %>
-          <p>No saved</p>
-        <% } %>
+        <% books.forEach(book => { %>
+          <section class="book">
+            <% if(book.image_url === 'Image not found') { %>
+              <h3 class="noImage">Image not found</h3>
+            <% } else { %>
+              <img src="<%= book.image_url %>">
+            <% } %>
+            <h2><%= book.title; %></h2>
+            <h3><%= book.authors; %></h3>
+            <h4>ISBN <%= book.isbn %></h4>
+            <p><%= book.description; %></p>
+          </section>
+        <% }); %>
+      <% } else { %>
+        <p>No saved</p>
+      <% } %>
     </section>
   </header>
 </body>
