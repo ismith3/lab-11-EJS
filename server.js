@@ -51,21 +51,23 @@ app.post('/bookshelf', (request, response) => {
 });
 
 /*show bookshelf */
-//app.get('/bookshelf', (request, response)) => {
- //getBookshelf()
-//};
+app.get('/bookshelf/:id', (request, response) => {
+  response.send('pages/bookshelf');
+  getBookshelf(request.params.id, response);
+  console.log(request.params.id);
+});
 
 /********* GETTING THE BOOKSHELF DATA NOT DONE ********/
 function getBookshelf (input, response) {
   const SQL = `SELECT * FROM books WHERE bookshelf = $1`;
-
-  client.query();
+  const values = [input];
+  client.query(SQL, values);
 }
 
 function saveBooks (input, response) {
-  const SQL = `INSERT INTO books (title, authors, description, image_url, bookshelf)
-                  VALUES ($1, $2, $3, $4, $5)`;
-  client.query(SQL, [input.book.title, input.book.author, input.book.description, input.book.thumbnail.thumbnail, input.bookshelf]);
+  const SQL = `INSERT INTO books (title, authors, description, image_url, isbn, bookshelf)
+                  VALUES ($1, $2, $3, $4, $5, $6)`;
+  client.query(SQL, [input.book.title, input.book.author, input.book.description, input.book.thumbnail.thumbnail, input.book.isbn, input.bookshelf]);
 }
 
 function fetchBooks (input, response){
@@ -84,13 +86,14 @@ function fetchBooks (input, response){
     });
 }
 
+/*Make me a book (book constructor) */
 function Book(book){
-  //console.log(book.volumeInfo);
   this.title = book.volumeInfo.title || 'Title not Found';
   this.authors = book.volumeInfo.authors || 'Authors not Found';
   this.description = book.volumeInfo.description || 'Description not Found';
   this.thumbnail = book.volumeInfo.imageLinks || 'Image not found';
   //this.image = book.volumeInfo.imageLinks.thumbnail.replace('http', 'https') || 'Not Found';
-  console.log(this.thumbnail);
+  this.isbn = book.volumeInfo.industryIdentifiers[0].identifier;
+  console.log(this.isbn);
 }
 
