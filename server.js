@@ -21,7 +21,11 @@ app.listen(PORT, () => console.log(`Never fear... port ${PORT} is here!!`));
 
 /*render search page*/
 app.get('/', (request, response) => {
-  response.render('pages/index');
+  const sql = `select * from books`;
+  client.query(sql)
+    .then(results => {
+      response.render('pages/index', {books: results.rows});
+    });
 });
 
 app.get('/books/:id', (request, response) => {

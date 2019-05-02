@@ -15,7 +15,14 @@
   <header>
     <% include ../partials/nav %>
     <section>
-      Saved Books
+      Saved Books: <%= books.length%>
+    </section>
+    <section>
+      <% if(books.length > 0) { %>
+
+        <% } else { %>
+          <p>No saved</p>
+        <% } %>
     </section>
   </header>
 </body>
