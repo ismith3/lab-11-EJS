@@ -57,7 +57,7 @@ app.get('/bookshelf/:id', (request, response) => {
   console.log(request.params.id);
 });
 
-/********* GETTING THE BOOKSHELF DATA NOT DONE ********/
+
 function getBookshelf (input, response) {
   const SQL = `SELECT * FROM books WHERE bookshelf = $1`;
   const values = [input];
