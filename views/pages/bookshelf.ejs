@@ -14,7 +14,8 @@
 <body>
   <header>
     <% include ../partials/nav %>
-    <section>Search Results</section>
+    <section><p><%=  data[0].bookshelf %></p></section>
+    <section> Bookshelf Count: <%= data.length || 0 %></section>
   </header>
   <% data.forEach(book => { %>
     <section class="book">
@@ -25,7 +26,7 @@
       <% } %>
       <h2><%= book.title; %></h2>
       <h3><%= book.authors; %></h3>
-      <h4><%= book.isbn %></h4>
+      <h4>ISBN <%= book.isbn %></h4>
       <p><%= book.description; %></p>
     </section>
   <% }); %>
