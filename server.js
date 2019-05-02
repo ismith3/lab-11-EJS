@@ -10,7 +10,6 @@ const PORT = process.env.PORT || 3000;
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended: true}));
 app.use(express.static('./public'));
-app.use(express.static('./script.js'));
 app.use(cors());
 
 const client = new Client(process.env.DATABASE_URL);
@@ -22,7 +21,7 @@ app.listen(PORT, () => console.log(`Never fear... port ${PORT} is here!!`));
 
 /*render search page*/
 app.get('/', (request, response) => {
-  response.render('pages/search-new');
+  response.render('pages/index');
 });
 
 app.get('/books/:id', (request, response) => {
@@ -40,6 +39,10 @@ app.get('/books/:id', (request, response) => {
   // response.render('pages/books/detail', {
   //   book: result.rows[0]
   // });
+});
+
+app.get('/views/pages/search-new', (request, response) => {
+  response.render('pages/search-new');
 });
 
 /* Book fetching*/
