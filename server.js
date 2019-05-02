@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 3000;
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended: true}));
 app.use(express.static('./public'));
+app.use(express.static('./script.js'));
 app.use(cors());
 
 const client = new Client(process.env.DATABASE_URL);
