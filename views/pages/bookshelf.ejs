@@ -7,6 +7,21 @@
   <title>Document</title>
 </head>
 <body>
-  
+  <header>
+    <% include ../partials/nav %>
+    <section>Search Results</section>
+  </header>
+  <% data.forEach(book => { %>
+    <section class="book">
+      <% if(book.thumbnail === 'Image not found') { %>
+        <h3 class="noImage">Image not found</h3>
+      <% } else { %>
+        <img src="<%= book.thumbnail.thumbnail.replace('http', 'https'); %>">
+      <% } %>
+      <h2><%= book.title; %></h2>
+      <h3><%= book.authors; %></h3>
+      <p><%= book.description; %></p>
+    </section>
+  <% }); %>
 </body>
 </html>
