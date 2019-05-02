@@ -70,7 +70,6 @@ function saveBooks (input, response) {
 
 function fetchBooks (input, response){
   let url = encodeURI(`https://www.googleapis.com/books/v1/volumes?q=${input}`);
-  console.log(url);
 
   superagent.get(url)
     .then(data => {
@@ -85,12 +84,9 @@ function fetchBooks (input, response){
 }
 
 function Book(book){
-  //console.log(book.volumeInfo);
   this.title = book.volumeInfo.title || 'Title not Found';
   this.authors = book.volumeInfo.authors || 'Authors not Found';
   this.description = book.volumeInfo.description || 'Description not Found';
   this.thumbnail = book.volumeInfo.imageLinks || 'Image not found';
-  //this.image = book.volumeInfo.imageLinks.thumbnail.replace('http', 'https') || 'Not Found';
-  console.log(this.thumbnail);
 }
 
