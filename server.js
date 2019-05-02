@@ -64,16 +64,16 @@ app.post('/bookshelf', (request, response) => {
 /*show bookshelf */
 
 app.get('/bookshelf/:id', (request, response) => {
-  response.send('pages/bookshelf');
   getBookshelf(request.params.id, response);
-  console.log(request.params.id);
+  //response.render('pages/bookshelf');
 });
-
 
 function getBookshelf (input, response) {
   const SQL = `SELECT * FROM books WHERE bookshelf = $1`;
   const values = [input];
-  client.query(SQL, values);
+  client.query(SQL, values).then(results => {
+    response.render('pages/bookshelf', { data:  results.rows});
+  });
 }
 
 function getDetails(request, response) {
@@ -84,9 +84,9 @@ function getDetails(request, response) {
   //response.render('pages/books/show.ejs');
 }
 function saveBooks (input, response) {
-  const SQL = `INSERT INTO books (title, authors, description, image_url, isbn, bookshelf)
+  const SQL = `INSERT INTO books (title, authors, isbn, description, image_url, bookshelf)
                   VALUES ($1, $2, $3, $4, $5, $6)`;
-  client.query(SQL, [input.book.title, input.book.author, input.book.description, input.book.thumbnail.thumbnail, input.book.isbn, input.bookshelf]);
+  client.query(SQL, [input.book.title, input.book.authors, input.book.isbn, input.book.description, input.book.thumbnail.thumbnail, input.bookshelf]);
 }
 
 function fetchBooks (input, response){
@@ -112,6 +112,4 @@ function Book(book){
   this.thumbnail = book.volumeInfo.imageLinks || 'Image not found';
   //this.image = book.volumeInfo.imageLinks.thumbnail.replace('http', 'https') || 'Not Found';
   this.isbn = book.volumeInfo.industryIdentifiers ? book.volumeInfo.industryIdentifiers[0].identifier : 'ISBN not found';
-  console.log(this.isbn);
 }
-

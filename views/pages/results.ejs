@@ -26,6 +26,7 @@
       <% } %>
       <h2><%= book.title; %></h2>
       <h3><%= book.authors; %></h3>
+      <h4><%= book.isbn %></h4>
       <p><%= book.description; %></p>
       <form action="/bookshelf" method="POST">
         <input type="text" name="bookshelf">
