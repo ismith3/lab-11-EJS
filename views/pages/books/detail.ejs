@@ -1,3 +1,10 @@
-<section>
-  
+<section class="book">
+  <% if(book.image_url === 'Image not found') { %>
+    <h3 class="noImage">Image not found</h3>
+  <% } else { %>
+    <img src="<%= book.image_url.replace('http', 'https'); %>">
+  <% } %>
+    <h2><%= book.title; %></h2>
+    <h3><%= book.authors; %></h3>
+    <p><%= book.description; %></p>
 </section>
