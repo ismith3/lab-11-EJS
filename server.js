@@ -24,6 +24,17 @@ app.get('/', (request, response) => {
   response.render('pages/search-new');
 });
 
+app.get('/books/:id', (request, response) => {
+  console.log(request.params.id);
+  let SQL = 'SELECT * FROM books WHERE id=$1';
+  let values = [request.params.id];
+
+  console.log(client.query(SQL, values));
+
+  response.render('pages/books/show', {
+    data: client.query(SQL, values)
+  });
+});
 
 /* Book fetching*/
 app.post('/results', (request, response) => {
@@ -51,6 +62,7 @@ app.post('/bookshelf', (request, response) => {
 });
 
 /*show bookshelf */
+
 app.get('/bookshelf/:id', (request, response) => {
   response.send('pages/bookshelf');
   getBookshelf(request.params.id, response);
@@ -64,6 +76,13 @@ function getBookshelf (input, response) {
   client.query(SQL, values);
 }
 
+function getDetails(request, response) {
+  console.log(request);
+  response.render('pages/books/detail', {
+    data: request
+  });
+  //response.render('pages/books/show.ejs');
+}
 function saveBooks (input, response) {
   const SQL = `INSERT INTO books (title, authors, description, image_url, isbn, bookshelf)
                   VALUES ($1, $2, $3, $4, $5, $6)`;
