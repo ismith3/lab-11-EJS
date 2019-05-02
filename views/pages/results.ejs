@@ -27,6 +27,11 @@
       <h2><%= book.title; %></h2>
       <h3><%= book.authors; %></h3>
       <p><%= book.description; %></p>
+      <form action="/bookshelf" method="POST">
+        <input type="text" name="bookshelf">
+        <input type="submit" value="save">
+        <input type="hidden" name="book" value="<%= JSON.stringify(book) %>">
+      </form>
     </section>
   <% }); %>
 </body>
