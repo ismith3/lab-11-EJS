@@ -6,20 +6,24 @@
 /* error */
 
 .error {
-  display: grid;
-  grid-template-columns: 15% auto 15%;
-  grid-template-rows:  10% 50% 20% 20%; 
-  justify-content: center;
   color: red; 
+  height: 80%;
 }
 
 .a{
-  grid-column: 2 / 3;
-  grid-row: 2 / 3;
+  font-size: 64px;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 20%;
+  padding-bottom: 20%;
 }
 
 .b{
-  grid-column: 2 / 3;
-  grid-row: 4 / 3;
   color: white;
+  font-size: 18px;
+}
+
+.b span {
+  color: red;
+  font-size: 24px;
 }
