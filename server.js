@@ -45,8 +45,28 @@ app.post('/results', (request, response) => {
 
 /*Book save */
 app.post('/bookshelf', (request, response) => {
- console.log(request.body);
+  console.log(request.body);
+  request.body.book = JSON.parse(request.body.book);
+  saveBooks(request.body);
 });
+
+/*show bookshelf */
+app.get('/bookshelf', (request, response)) => {
+ //getBookshelf()
+}
+
+/********* GETTING THE BOOKSHELF DATA NOT DONE ********/
+// function getBookshelf (input, response) {
+//   const SQL = `SELECT * FROM books WHERE bookshelf = $1`;
+
+//   client.query()
+// }
+
+function saveBooks (input, response) {
+  const SQL = `INSERT INTO books (title, authors, description, image_url, bookshelf)
+                  VALUES ($1, $2, $3, $4, $5)`;
+  client.query(SQL, [input.book.title, input.book.author, input.book.description, input.book.thumbnail.thumbnail, input.bookshelf]);
+}
 
 function fetchBooks (input, response){
   let url = encodeURI(`https://www.googleapis.com/books/v1/volumes?q=${input}`);
@@ -73,3 +93,4 @@ function Book(book){
   //this.image = book.volumeInfo.imageLinks.thumbnail.replace('http', 'https') || 'Not Found';
   console.log(this.thumbnail);
 }
+
